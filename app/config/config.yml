@@ -7,15 +7,14 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    #asset_dir: 'web_imgsmash.com'
     #asset_fullImage_folder: 'img/f'
     #asset_mediumImage_folder: 'img/m'
     #asset_smallImage_folder: 'img/t'
     email:
         abuse: ''
         contactCollector:
-            - 'p_network@outlook.com'
-            - 'xeroxmm@live.de'
+            - 'test@outlook.com'
+            - 'test@live.de'
     #asset_dir: web
 
 salva_jshrink:

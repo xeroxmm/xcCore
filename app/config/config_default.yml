@@ -1,0 +1,23 @@
+parameters:
+    asset_dir: 'web'
+    asset_fullImage_folder: 'img/f'
+    asset_mediumImage_folder: 'img/m'
+    asset_smallImage_folder: 'img/t'
+
+framework:
+    #esi: ~
+    #translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/_default/routing.yml'
+        strict_requirements: ~
+    #profiler: { only_exceptions: false }
+
+#web_profiler:
+#    toolbar: true
+#    intercept_redirects: false
+
+imports:
+    - { resource: config.yml }
+    - { resource: _default/parameters.yml }
+    - { resource: services.yml }
