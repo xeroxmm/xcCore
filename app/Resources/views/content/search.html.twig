@@ -1,0 +1,9 @@
+<form class="search-form-top" action="{{ path("searchPageMain") }}" method="post">
+    <div class="input-group">
+        <input name="search" type="text" class="form-control" placeholder="Search for..." id="xcSearchField" required>
+        <span class="input-group-btn">
+        <button class="btn btn-secondary" type="submit" id="xcSearchBtn"><img src="/public/icons/search.png"/></button>
+        <script>document.getElementById('xcSearchBtn').onclick = function(){if(!document.getElementById('xcSearchField').value)return false;window.location.href = '/search/all/'+encodeURIComponent(document.getElementById('xcSearchField').value).replace("%20","+");};</script>
+        </span>
+    </div>
+</form>

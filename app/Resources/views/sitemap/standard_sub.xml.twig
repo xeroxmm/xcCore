@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for cc in content %}
+    {# @var cc ContentContainer #}
+    <url>
+        <loc>{{ cc.Url }}</loc>
+        {% if cc.Lastmod %}<lastmod>{{ cc.Lastmod }}</lastmod>{% endif %}
+        {% if cc.Frequency %}<changefreq>{{ cc.Frequency }}</changefreq>{% endif %}
+        {% if cc.Priority %}<priority>{{ cc.Priority }}</priority>{% endif %}
+    </url>
+    {% endfor %}
+</urlset>

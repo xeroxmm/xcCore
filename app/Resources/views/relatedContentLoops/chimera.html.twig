@@ -1,0 +1,15 @@
+<div class="row">
+{% set counter = 0 %}
+{% for ct in content.relatedContentEntities %}
+    {# var ct Content #}
+    {% set counter = counter + 1 %}
+    {% set mod = counter % 10 %}
+    {% set mixer = 4 + (counter % 7) %}
+    {% set mixer2 = 21 + (counter % 23) %}
+    <div id="e_{{ ct.basedID }}" class="{{ (mod > 0 and mod < 7 ) ? 'col-lg-2' : 'col-lg-3' }} col-md-3 col-sm-6 col-6 mb-2 px-1 px-sm-1 px-md-1 px-lg-1 {{ mixer % 5 == 0 or mixer2 % 5 == 0 ? 'noGrayScale' : '' }}">
+        <a href="{{ ct.fullURL is defined ? ct.fullURL : '' }}">
+            <img class="img-fluid img-thumbnail grid-item-thumb" src="/img/t/{{ ct.imagePath is defined ? ct.imagePath : ''}}" />
+        </a>
+    </div>
+{% endfor %}
+</div>

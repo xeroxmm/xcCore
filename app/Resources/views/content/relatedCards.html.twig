@@ -1,0 +1,14 @@
+<div id="infiniteBox-rel" class="xcInfBox card-columns infinite-scroll active">
+    {% include "/content/relatedLoop.html.twig" ignore missing %}
+</div>
+{% if contentSupply.moreElements(false) %}
+    <div class="col-12 text-center my-2">
+    <a id="linkLoadRecent-0" class="nextPaginationLink" href="?page={{ contentSupply.nextPage }}#related"
+       rel="noindex, follow">
+        <button class="btn btn-primary col-12 col-sm-6">Load More</button>
+    </a>
+        <!--
+    <script>var link = document.getElementById("linkLoadRecent-0");
+        link.setAttribute('data-link', "{{ url("apiContentInfoRelated") }}?page=2&filter=0&cID={{ cID }}");</script>-->
+    </div>
+{% endif %}

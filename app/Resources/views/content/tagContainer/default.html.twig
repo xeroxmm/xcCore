@@ -1,0 +1,8 @@
+<div class="card-block tags-block pt-0">
+    <p class="card-text">{{ content.description }}</p>
+    {% if content.tagArray is not empty %}
+        {% for tag in content.tagArray %}
+            <a href="/{{ pathTag }}/{{ tag.slug }}"><div class="btn btn-outline-secondary mb-1">{{ tag.label }}</div></a>
+        {% endfor %}
+    {% endif %}
+</div>

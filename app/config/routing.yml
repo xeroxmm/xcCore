@@ -1,0 +1,4 @@
+app:
+    resource: '@BackendBundle/Controller/'
+    type: annotation
+    prefix:   /

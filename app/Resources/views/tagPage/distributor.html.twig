@@ -1,0 +1,5 @@
+{% if not template_tag_theme is defined or template_tag_theme == 'default' %}
+    {% include 'tagPage/default.html.twig' %}
+{% elseif template_tag_theme == 'bigPic' %}
+    {% include 'tagPage/bigPic.html.twig' %}
+{% endif %}

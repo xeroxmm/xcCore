@@ -1,0 +1,13 @@
+parameters:
+  tool:
+    content:
+      allowDoubled: 0
+    images:
+      name_method: simple
+      tmp_dir: '%kernel.project_dir%/app/tmp'
+      crop_landscape: mid
+      crop_portrait: top
+      parameter:
+        - { dimX: 300, dimY: 300, dir: '%kernel.project_dir%/%asset_dir%/img/t', prefix: ~, postfix: ~ }
+        - { dimX: 750, dimY: ~, dir: '%kernel.project_dir%/%asset_dir%/img/m', prefix: ~, postfix: ~ }
+        - { dimX: ~, dimY: ~, dir: '%kernel.project_dir%/%asset_dir%/img/f', prefix: ~, postfix: ~ }

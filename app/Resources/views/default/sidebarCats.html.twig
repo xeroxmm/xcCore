@@ -1,0 +1,11 @@
+{% if sidebar_cats is defined %}
+    <div id="xc-sidebar-menu" class="col-sm-3 col-lg-2 px-0 px-md-1 sidebar-menu-front">
+        <ul class="list-group list-sidebar xcT1">
+            {% for item in sidebar_cats %}
+                <a href="{{ item.url != 'popular'?'/t/':'/'}}{{ item.url }}">
+                    <li class="list-group-item sidebar-list-item{{ item.class is defined ?' brand-top':''}}">{{ item.text }}</li>
+                </a>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

@@ -1,0 +1,59 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{% extends 'base.html.twig' %}
+{% set ogImage = '' %}
+{%  set title = "" %}
+{%  set description = "" %}
+{% set content = contentSupply.baseContent %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block metaLink %}
+    {% include ':content/metaPlugs:metaLink.html.twig' ignore missing %}
+{% endblock %}
+{% block meta %}
+    <meta name="twitter:url" content="{{ constant('SETTING_PREVENT_SSL') is defined ? 'http:' : 'https'}}://{{ app.request.host ~ app.request.baseUrl ~ app.request.pathInfo }}"/>
+    <meta name="twitter:title" content="{{ title }}"/>
+    <meta name="twitter:description" content="{{ description }}"/>
+    <meta property="article:author" content="{{ brand }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="{{ ogImage }}"/>
+
+    <meta property="og:url" content="{{ constant('SETTING_PREVENT_SSL') is defined ? 'http:' : 'https'}}://{{ app.request.host ~ app.request.baseUrl ~ app.request.pathInfo }}"/>
+    <meta property="og:title" content="{{ title }}"/>
+    <meta property="og:description" content="{{ description }}"/>
+    <meta property="og:site_name" content="{{ brand }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content="{{ ogImage }}"/>
+    <meta property="og:image:width" content="300"/>
+    <meta property="og:image:height" content="300"/>
+    <link rel="canonical" href="{{ constant('SETTING_PREVENT_SSL') is defined ? 'http:' : 'https'}}://{{ app.request.host ~ app.request.baseUrl ~ app.request.pathInfo }}">
+{% endblock %}
+{% block description %}
+    {{ description }}
+{% endblock %}
+{% block body %}
+    <div class="container px-0">
+        <div class="row no-gutters px-1">
+            <div class="col-12 p-3 mb-2 grid-head-box text-center">
+                <h1>Search Results for "{{ searchterm is defined ? "" ~ searchterm : "" }}"</h1>
+            </div>
+            {% include('default/sidebar.html.twig') %}
+            <div class="col-12 mb-3">
+                {{ include('navigationHead/filterCrumb.html.twig') }}
+            </div>
+        </div>
+        <div id="infiniteBox-new" class="xcInfBox row no-gutters infinite-scroll">
+            {% include "/content/baseLoop.html.twig" ignore missing %}
+            {% if contentSupply.moreElements %}
+                <a id="linkLoadRecent-0" class="nextPagionationLink col-12 text-center mb-2" href="?page={{ contentSupply.nextPage }}&filter=0" rel="noindex, follow">
+                    <button class="btn btn-primary col-12 col-sm-6">Load More</button></a>
+                <!--<script>var link = document.getElementById("linkLoadRecent-0");
+                    link.setAttribute('data-link', "{{ url("apiContentTagRelated") }}?tagID=&page={{ contentSupply.nextPage }}&filter=0");
+                    //link.style.display = 'none';</script>-->
+            {% endif %}
+            <div class="col-12 text-center mt-2 mb-3">
+                {% set adSlot = 'i_slot_4' %}
+                {% include 'plugs/banner/distributor.php.twig' ignore missing %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

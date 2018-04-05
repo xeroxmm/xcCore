@@ -1,0 +1,316 @@
+{% htmlcompress %}
+{% set user = FALSE %}
+{# @var user \Symfony\Component\Security\Core\User\User #}
+{# @var client \AppBundle\Security\User\Anonym\SessionHandler #}
+{% set descr = descriptionString | default('') %}
+{% set focusOn = app.request.cookies.get('x9001s') == '1' ? 'pop' : 'new' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ asset('/public/css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/public/css/global.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/css/custom.css') }}"/>
+    {% block stylesheets %}{% endblock %}
+    {% if exoclicks is defined %}
+        <meta name="exoclick-site-verification" content="{{ exoclicks }}">
+    {% endif %}
+    {% if xhamster is defined %}
+        <meta name="xhamster-site-verification" content="{{ xhamster }}"/>
+    {% endif %}
+    {% if hubtraffic is defined %}
+        <meta name="hubtraffic-domain-validation" content="{{ hubtraffic }}"/>
+    {% endif %}
+    {% if yandex is defined %}
+        <meta name="yandex-verification" content="{{ yandex }}"/>
+    {% endif %}
+    {% if themecolor is defined %}
+        <meta name="theme-color" content="#{{ themecolor }}">
+    {% endif %}
+    {% if googleSiteVerification is defined %}
+        <meta name="google-site-verification" content="{{ googleSiteVerification }}"/>
+    {% endif %}
+    {% if bing is defined %}
+    <meta name="msvalidate.01" content="{{ bing }}"/>
+    {% endif %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="origin">
+    <meta name="RATING" content="RTA-5042-1996-1400-1577-RTA"/>
+    <meta name="robots" content="follow,index"/>
+    {% block metaLink %}{% endblock %}
+    {% block metaIndex %}{% endblock %}
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% if homepage_title is defined %}{{ homepage_title }}{% else %}{{ brand }}{% endif %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="author" content="{{ brand }}"/>
+    {% if twitter is defined %}
+        <meta name="twitter:title" content="{{ brand }}"/>
+        {% if descriptionString is defined %}
+            <meta name="twitter:description" content="{{ descr }}"/>{% endif %}
+    {% endif %}
+
+    <link rel="icon" href="{{ asset('/img/favicon.ico') }}">
+    <meta name="description" content="{% block description %}{{ descr }}{% endblock %}"/>
+    {% block meta %}{% endblock %}
+    {% if juicyAdsPopUp is defined and juicyAdsPopUp %}
+        <script type="text/javascript"
+                src="https://js.juicyads.com/jp.php?c={{ juicyAdsPopUp }}&u=http%3A%2F%2Fwww.juicyads.rocks"></script>
+    {% endif %}
+    {% if exoclicksPopUp is defined %}
+        <script type="text/javascript">
+            var ad_idzone = "{{ exoclicksPopUp }}",
+                ad_frequency_period = 720,
+                ad_frequency_count = 1;
+        </script>
+        <script type="text/javascript" src="https://ads.exosrv.com/popunder1000.js"></script>
+    {% endif %}
+</head>
+<body id="base" class="base">
+{% include "navigationHead/navbarSidebar.html.twig" %}
+<div id="wrap" class="wrap pb-4">
+    {% block pageHead %}{% endblock %}
+        {% block crumbBlock %}{% endblock %}
+    {% block body %}{% endblock %}
+</div>
+<div id="footer" class="px-3 py-4">
+    <div class="container px-1">
+        <div class="row no-gutters">
+            <div class="col-12 col-md-4 mb-2">
+                <span><strong>About</strong></span>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-blank px-2 py-1"><a href="{{ path('staticPrivacy') }}">Privacy
+                            Policy</a></li>
+                    <!--<li class="list-group-item list-group-item-blank px-2 py-1"><a href="{{ path('staticTOS') }}">Terms of Service</a></li>-->
+
+                </ul>
+            </div>
+            <div class="col-12 col-md-4 mb-2">
+                <span><strong>Contact</strong></span>
+                <ul class="list-group">
+                    <!--<li class="list-group-item list-group-item-blank px-2 py-1"><a href="{{ path('staticContentAdvertisement') }}">Advertising</a></li>
+							<li class="list-group-item list-group-item-blank px-2 py-1"><a href="{{ path('staticContentPartner') }}">Content Partners</a></li>-->
+                    <li class="list-group-item list-group-item-blank px-2 py-1"><a
+                                href="{{ path('staticContactWebmaster') }}">Webmasters</a></li>
+                    <li class="list-group-item list-group-item-blank px-2 py-1"><a
+                                href="{{ path('staticContactDMCA') }}">Content Removal</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-4 mb-2">
+            </div>
+        </div>
+    </div>
+    {% block googleAnalytics %}{% endblock %}
+</div>
+<script src="/public/js/fingerprint2.min.js" async></script>
+<script src="{{ asset('/public/js/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('/public/js/lazyload-197.js') }}"></script>
+<script>$(document).ready(function(){$('img.lazyload').lazyload({threshold : 500});});</script>
+<!--<script src="{{ asset('/js/tether.min.js') }}"></script>
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/public/js/jquery.mobile.custom.min.js') }}"></script>
+<script src="{{ asset('/public/js/javascript.packed.js') }}"></script>-->
+<script>
+    {% set pageID = content is defined and content.ID is defined ? content.ID : 'false' %}
+    {% set pageIdentifier = client is defined and client is not null ? client.uniquePageIdentifier : '' %}
+    var pageID = {{ pageID }}, pageuid = '{{ pageIdentifier }}';
+</script>
+{% if analyticsID is defined %}
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', '{{ analyticsID }}', 'auto');
+    ga('send', 'pageview');
+</script>
+{% endif %}
+<script src="{{ path('jsStandard') }}" async></script>
+<script src="/js/main.js" async></script>
+<script src="/public/js/clipboard.min.js"></script>
+<script async>
+    var clipboard = new Clipboard('.btncopy');
+    clipboard.on('success', function(e) {
+        console.log(e);
+        e.clearSelection();
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+    $(document).ready(function(){
+        var doInf = true;
+        var triggeredSites = {};
+        var tURL; var appended = {};/*
+        $(window).scroll(function() {
+            if($( ".xcInfBox.active a.nextPagionationLink" ).length && $(window).scrollTop() >= 0.65*($(document).height() - $(window).height()) && doInf){
+                tURL = $(".xcInfBox.active a.nextPagionationLink:last").attr("href");
+                if(tURL in triggeredSites)
+                    return;
+
+                var object = 'infiniteBox';
+                triggeredSites[tURL] = true;
+
+                $.ajax({
+                    url: tURL ,
+                    success: function(html) {
+                        if(typeof html.p !== 'undefined' && html.p !== null && typeof html.p.c !== 'undefined'){
+                            html = html.p.c;
+                            if(!(tURL in appended)){
+                                appended[tURL] = true;
+                                $('#linkLoadRecent').parent().remove();
+                                if($('.xcInfBox.active').length){
+                                    $('.xcInfBox.active').append(html);
+                                } else if($('#'+object).length){
+                                    $('#'+object).append(html);
+                                } else if($("#grid-main").length){
+                                    $("#grid-main").append(html);
+                                } else {
+                                    $("#img-grid-box").append(html);
+                                }
+
+                            }
+                        } else {
+                            doInf = false;
+                        }
+                    }
+                });
+            }
+        });*/
+        $('body').on('click','.xcInfBox.active a.nextPagionationLink:last',function(e){
+            e.preventDefault();
+            if($(this).hasClass('active'))
+                return false;
+
+            $(this).addClass('active');
+
+            var tURL = $(this).data("link");
+            var button = $(this);
+            var page_title = document.title, page_url = $(this).attr('href');
+            button.remove();
+            $.ajax({
+                url: tURL ,
+                success: function(html) {
+                    if(typeof html.p !== 'undefined' && html.p !== null && typeof html.p.c !== 'undefined'){
+                        if (typeof history.pushState !== "undefined") {
+                            var obj = { dummy: 'char_1' };
+                            history.pushState(obj, page_title, page_url);
+                        }
+                        html = html.p.c;
+                        if(!(tURL in appended)){
+                            appended[tURL] = true;
+                            $('#linkLoadRecent').parent().remove();
+                            if($('.xcInfBox.active').length){
+                                $('.xcInfBox.active').append(html);
+                            } else if($('#'+object).length){
+                                $('#'+object).append(html);
+                            } else if($("#grid-main").length){
+                                $("#grid-main").append(html);
+                            } else {
+                                $("#img-grid-box").append(html);
+                            }
+
+                        }
+                    } else {
+                        doInf = false;
+                    }
+                }
+            });
+        }).on('click','.xcInfBox a:not(.nextPagionationLink)',function(){
+            /*var idx = $(this).closest('div').attr('id');
+            var page_title = document.title, page_url = document.location.href.match(/(^[^#]*)/)[0] + '#' + idx;
+
+            if (typeof history.pushState !== "undefined") {
+                var obj = { dummy: 'char_1' };
+                history.pushState(obj, page_title, page_url);
+            }*/
+            return true;
+        });
+        var swipeLeftHandler = function(){
+            var newURL = $('#xmMoveLeft').attr('href');
+            if(newURL.length > 3)
+                location.assign(newURL);
+        };
+        var swipeRightHandler = function(){
+            var newURL = $('#xmMoveRight').attr('href');
+            if(newURL.length > 3)
+                location.assign(newURL);
+        };
+        var setCookie = function(name,value,days){
+            var d = new Date();
+            d.setTime(d.getTime() + (days*24*60*60*1000));
+
+            document.cookie = name + "=" + value + "; expires="+d.toUTCString()+"; path=/";
+        };
+        if($('#linkedBox').length || true){
+            $(document).keydown(function(e) {
+                newURL = '';
+                switch(e.which) {
+                    case 37: // left
+                        swipeLeftHandler();
+                        break;
+                    case 39: // right
+                        swipeRightHandler();
+                        break;
+                    default: return; // exit this handler for other keys
+                }
+                e.preventDefault(); // prevent the default action (scroll / move caret)
+            });
+            $( "img.img-single" ).on( "swipeleft", swipeRightHandler ).on( "swiperight", swipeLeftHandler );
+            //$( "img.img-single" );
+        }
+        /*if($('.xcUsePopList').length){
+            $('.xcUsePopList').on('click',function(e){
+                e.preventDefault();
+                $('.xcUseList').removeClass('active');
+                $('.xcInfBox').addClass('d-none').removeClass('active');
+                setCookie('x9001s','1',720);
+                $(this).addClass('active');
+                $('#'+$(this).data('target')).removeClass('d-none').addClass('active');
+
+                window.history.pushState('obj', document.title, $(this).attr('href'));
+                return false;
+            });
+
+        }*/
+        /*if($('.xcUseNewList').length){
+            $('.xcUseNewList').on('click',function(e){
+                e.preventDefault();
+                $('.xcUseList').removeClass('active');
+                $('.xcInfBox').addClass('d-none').removeClass('active');
+                setCookie('x9001s','0',720);
+                $(this).addClass('active');
+                $('#'+$(this).data('target')).removeClass('d-none').addClass('active');
+
+                window.history.pushState('obj', document.title, $(this).attr('href'));
+                return false;
+            });
+        }*/
+    });
+</script>
+<script>
+    $( "#sidebar-button" ).click(function() {
+        $( "#xc-sidebar-menu" ).slideToggle({});
+    });
+    $( '.xmShare, .overlay-close' ).click(function() {
+        $( ".share-overlay-custom" ).slideToggle();
+        $( ".xmShare" ).classList.toggle("active");
+    });
+    $( "#FilterMenuButton" ).click(function() {
+        $( "#FilterMenu" ).slideToggle({});
+    });
+    $( "#MediaMenuButton" ).click(function() {
+        $( "#MediaMenu" ).slideToggle({});
+    });
+    $( ".btncopy" ).click(function() {
+        $(".btncopy").text('copied!');
+    });
+</script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
+{% endhtmlcompress %}

@@ -1,0 +1,50 @@
+{# @var supply \AppBundle\Tools\Supply\Content #}
+{# @var content \AppBundle\Entity\Content #}
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{% set focus_1 = not contentSupply.popularContext ? ' active' : '' %}
+{% set focus_2 = contentSupply.popularContext ? ' active' : '' %}
+<!--
+<div class="row no-gutters px-1" id="related">
+    <div class="col-12 px-0 mb-3">
+        <div class="row no-gutters">
+
+            {% if not contentSupply.typeContextCollection %}
+            <ul class="nav nav-tabs col-6">
+                <li class="nav-item right">
+                    <a id="related" name="related" class="xcUseNewList xcUseList nav-link active" href="#related" rel="nofollow"
+                       data-target="infiniteBox-rel">Related</a>
+                </li>
+            </ul>
+            {% endif %}
+            {#<ul class="nav nav-tabs col-6  justify-content-end">
+                <li class="nav-item right">
+                    <a class="xcUseNewList xcUseList nav-link{{ focus_1|raw }}" href="{{ contentSupply.thisURL }}#related"
+                       rel="nofollow"
+                       data-target="infiniteBox-rel">Recent</a>
+                </li>
+                <li class="nav-item right">
+                    <a class="xcUseNewList xcUseList nav-link{{ focus_2|raw }}"
+                       href="{{ contentSupply.thisURL }}/popular#related" rel="nofollow"
+                       data-target="infiniteBox-rel">Popular</a>
+                </li>
+            </ul>#}
+        </div>
+    </div>
+</div>
+-->
+{% set cID = content.ID %}
+    {% if template_related is defined and template_related == 'cards' %}
+    {% include 'content/relatedCards.html.twig' %}
+    {% else %}
+<div id="infiniteBox-rel" class="xcInfBox wrap-related mx-0 mx-md-1 p-3 row no-gutters infinite-scroll active">
+    {% include "/content/relatedLoop.html.twig" ignore missing %}
+    {% if contentSupply.moreElements(false) %}
+    <a id="linkLoadRecent-0" class="nextPaginationLink col-12 text-center" href="?page={{ contentSupply.nextPage }}#related"
+       rel="noindex, follow">
+        <button class="btn btn-primary col-12 col-sm-4">more related</button>
+    </a>
+    <script>var link = document.getElementById("linkLoadRecent-0");
+        link.setAttribute('data-link', "{{ url("apiContentInfoRelated") }}?page=2&filter=0&cID={{ cID }}");</script>
+    {% endif %}
+</div>
+{% endif %}

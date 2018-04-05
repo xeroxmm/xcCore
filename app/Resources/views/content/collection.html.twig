@@ -1,0 +1,72 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{# @var content \AppBundle\Entity\Content #}
+{% set content = contentSupply.postContent %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ content.title }}{% endblock %}
+{% block metaIndex %}{% include ':content/metaPlugs:metaNoIndex.html.twig' ignore missing %}{% endblock %}
+{% block meta %}
+    <meta property="og:url" content="{{ content.CanonicalURL }}">
+    <meta property="og:title" content="{{ content.title }}">
+    <meta property="og:description" content="{{ content.description }}">
+    <meta property="og:site_name" content="{{ brand }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image"
+          content="{{ content.getServerURL ~ pathImageSmall ~ "/" ~ content.thumbnailObj.thumbnailLinkURL }}">
+    <meta property="og:image:width" content="{{ content.thumbnailObj.dimX }}">
+    <meta property="og:image:height" content="{{ content.thumbnailObj.dimY }}">
+
+    <meta name="twitter:url" content="{{ content.CanonicalURL }}">
+    <meta name="twitter:title" content="{{ content.title }}">
+    <meta name="twitter:description" content="{{ content.description }}">
+    <meta property="article:author" content="{{ brand }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image"
+          content="{{ content.getServerURL ~ pathImageSmall ~ "/" ~ content.thumbnailObj.thumbnailLinkURL }}">
+
+    <link rel="canonical" href="{{ contentSupply.CanonicalURL }}">
+
+{% endblock %}
+
+{% block body %}
+    <div class="container px-1">
+        <div class="row no-gutters px-1">
+            <div class="col-12 p-3 my-3 grid-head-box text-center">
+                <h1 itemprop="headline" class="image-title">{% if content.title is not empty %}{{ content.title|raw }}{% else %}<i>Title
+                        not provided</i>{% endif %}</h1>
+                <span class="text-muted">A collection with more than {{ contentSupply.filterCount|raw }} {{ contentSupply.filterContext }}</span>
+                {% if content.description %}<p itemprop="articleBody" class="card-text">{{ content.description }}</p>{% endif %}
+                <div style="position: absolute; top:0; left: 0; bottom: 0;">
+                    <img itemprop="image" class="img-fluid img-single" style="height: 100%"
+                         src="/{{ pathImageSmall ~ "/" ~ content.thumbnailObj.thumbnailLinkURL() }}"
+                         alt="{{ content.title }}"/>
+                </div>
+                <div class="mx-auto mx-md-0 my-3">
+                    {% if(template_voter_position is not defined or template_voter_position == 'default') %}
+                        {% include 'content/userInteraction/voter.html.twig' ignore missing %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                {{ include('navigationHead/filterCrumb.html.twig') }}
+            </div>
+        </div>
+        <div id="infiniteBox-new" class="xcInfBox infinite-scroll row no-gutters ">
+            {% if contentSupply.relatedContext %}
+                {% include 'content/related.html.twig' ignore missing %}
+            {% else %}
+                {% set content = contentSupply.collectionContent.subContentObj %}
+                {% include "/content/baseLoop.html.twig" ignore missing %}
+                {% if contentSupply.moreElements %}
+                    <a id="linkLoadRecent-0" class="nextPagionationLink col-12 text-center mb-2" href="?page={{ contentSupply.nextPage }}" rel="noindex, follow">
+                        <button class="btn btn-primary col-12 col-sm-6">Load More</button></a>
+                    <script>var link = document.getElementById("linkLoadRecent-0");
+                        link.setAttribute('data-link', "{{ url("apiContentTagRelated") }}?cID={{ contentSupply.iD }}&page={{ contentSupply.nextPage }}");
+                        //link.style.display = 'none';</script>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

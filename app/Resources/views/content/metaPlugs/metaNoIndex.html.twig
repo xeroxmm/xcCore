@@ -1,0 +1,6 @@
+{% set isSubPage = app.request.query.get("page") ? true : false %}
+{% if isSubPage %}
+    <meta name="robots" content="follow,noindex" />
+{% else %}
+    <meta name="robots" content="follow,index" />
+{% endif %}

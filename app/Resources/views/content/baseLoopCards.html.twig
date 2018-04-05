@@ -1,0 +1,47 @@
+{# @var ads \AppBundle\Tools\Advertisement\ContentInjectContainer #}
+{# @var content \AppBundle\Entity\Content[] #}
+{% set useAds = 0 %}
+{% if ads is defined %}
+    {% set useAds = 1 %}
+{% endif %}
+
+{% if content %}
+    {% set counter = 0 %}
+    {% for ct in content %}
+        {% set counter = counter + 1 %}
+        {% set mixer = 4 + (counter % 7) %}
+        {% set mixer2 = 21 + (counter % 23) %}
+        {% if ct.extern %}
+            <div class="card mb-2 px-1 adPlug noGrayScale">
+                <a href="{{ ct.firstContentCombinationElement.linkObj.externURL }}" title="{{ ct.title }}" target="_blank" rel="external">
+                    <div>
+                        <div class="badgeTop px-2 py-1"><span>{{ ct.firstContentCombinationElement.linkObj.domainName }}</span></div>
+                    </div>
+                    <img class="img-fluid card-img-top grid-item-thumb" alt="{{ ct.title }}"
+                         src="/{{ pathImageSmall }}/{{ ct.imagePath() }}"/>
+                </a>
+            </div>
+        {% else %}
+            <div id="e_{{ ct.basedID }}"
+                 class="xcCapsule card mb-2 px-1 {{ mixer % 5 == 0 or mixer2 % 5 == 0 ? 'noGrayScale' : '' }}">
+                <a href="{{ ct.fullURL }}" title="{{ ct.title }}" class="xcHopOn">
+                    {{ ct.image ? '' : ''}}
+                    {{ ct.video ? '<div><div class="badgeMedia px-2 py-1">Video</div></div>' : ''}}
+                    {{ ct.gif ? '<div><div class="badgeMedia px-2 py-1">GIF</div></div>' : ''}}
+                    {{ ct.collection ? '<div><div class="badgeMedia px-2 py-1">Gallery</div></div>' : ''}}
+                    <img class="img-fluid card-img-top grid-item-thumb" alt="{{ ct.title }}"
+                         src="/{{ pathImageMedium }}/{{ ct.imagePath() }}"/>
+                    <p class="grid-media-title mb-0 mx-1 p-2">{{ ct.title }}</p>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% if content|length > 50 and nextPaginationPage is defined and nextPaginationPage %}
+    <a href="/?page={{ nextPaginationPage }}&filter={{ filter is defined and filter > 0 ? filter : 0 }}"
+       data-link="{{ url('apiContentBaseRelated') }}?page={{ nextPaginationPage }}&filter={{ filter is defined and filter > 0 ? filter : 0 }}"
+       class="nextPagionationLink col-12 text-center mb-2"
+       rel="noindex, follow">
+        <button class="btn btn-primary col-12 col-sm-6">Load More</button>
+    </a>
+{% endif %}

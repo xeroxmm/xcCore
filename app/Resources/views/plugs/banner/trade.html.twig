@@ -1,0 +1,56 @@
+{# @var advertisementContainer \AppBundle\Template\AdvertisementContainer #}
+{# @var adItem \AppBundle\Interfaces\AdvertisementResource #}
+{% if advertisementContainer is defined %}
+<div class="row no-gutters mx-0 mx-md-1 wrap-related p-3">
+    {% if advertisementContainer.elements(4) %}
+        {% set adItem = advertisementContainer.nextElement %}
+        {% for i in 0..3 if adItem is not null %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2 px-1" onclick="ga('send', 'event', 'tradeplugs', '{{ adItem.hosterName }}');">
+                <a href="{{ adItem.link }}" title="" target="_blank" rel="external">
+                    <div>
+                        <div class="badgeTop px-2 py-1"><span>{{ adItem.hosterName }}</span></div>
+                    </div>
+                    <img class="img-fluid img-thumbnail grid-item-thumb" alt="{{ adItem.title }}"
+                         src="/{{ pathImageSmall }}/{{ adItem.imageURLAbsolute }}"></a></div>
+            {% set adItem = advertisementContainer.nextElement %}
+        {% endfor %}
+    {% else %}{#
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'motherless');">
+            <a
+                    href="http://motherless.com/EF6AAA2"
+                    title="" target="_blank" rel="external">
+                <div>
+                    <div class="badgeTop px-2 py-1"><span>motherless.com</span></div>
+                </div>
+                <img class="img-fluid img-thumbnail grid-item-thumb" alt="Hot Amateur Wife Showing off"
+                     src="/img/t/0/0/0/1l/486.jpeg"></a></div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'motherless');">
+            <a
+                    href="http://motherless.com/F982090"
+                    title="" target="_blank" rel="external">
+                <div>
+                    <div class="badgeTop px-2 py-1"><span>motherless.com</span></div>
+                </div>
+                <img class="img-fluid img-thumbnail grid-item-thumb" alt="Hot Amateur Wife Showing off"
+                     src="/img/t/0/0/0/1l/487.jpeg"></a></div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'motherless');">
+            <a
+                    href="http://motherless.com/7426593"
+                    title="" target="_blank" rel="external">
+                <div>
+                    <div class="badgeTop px-2 py-1"><span>motherless.com</span></div>
+                </div>
+                <img class="img-fluid img-thumbnail grid-item-thumb" alt="Hot Amateur Wife Showing off"
+                     src="/img/t/0/0/0/1l/488.jpeg"></a></div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'motherless');">
+            <a
+                    href="http://motherless.com/D8E265C"
+                    title="" target="_blank" rel="external">
+                <div>
+                    <div class="badgeTop px-2 py-1"><span>motherless.com</span></div>
+                </div>
+                <img class="img-fluid img-thumbnail grid-item-thumb" alt="Hot Amateur Wife Showing off"
+                     src="/img/t/0/0/0/1l/489.jpeg"></a></div>
+    #}{% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,15 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content#}
+{% set isSubPage = app.request.query.get("page") ? true : false %}
+{% set url = app.request.getSchemeAndHttpHost ~ app.request.baseUrl ~ app.request.pathInfo %}
+{% if contentSupply is defined %}
+    {% if not isSubPage and contentSupply.moreElements %}
+        <link rel="next" href="{{ url }}?page=2" />
+    {% elseif contentSupply.moreElements %}
+        <link rel="next" href="{{ url }}?page={{ app.request.query.get("page") + 1}}" />
+    {% endif %}
+    {% if app.request.query.get("page") > 2 %}
+        <link rel="prev" href="{{ url }}?page={{ app.request.query.get("page") - 1 }}" />
+    {% elseif app.request.query.get("page") == 2 %}
+        <link rel="prev" href="{{ url }}" />
+    {% endif %}
+{% endif %}

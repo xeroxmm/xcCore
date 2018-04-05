@@ -1,0 +1,6 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{% if contentSupply.streamContentEntities|length > 0 %}
+    <div id="linkedBox" class="row no-gutters hidden-sm-down">
+        {% include "/content/linkedLoop.html.twig" ignore missing %}
+    </div>
+{% endif %}

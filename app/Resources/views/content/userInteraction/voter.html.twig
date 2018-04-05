@@ -1,0 +1,21 @@
+{# @var client \AppBundle\Security\User\Anonym\SessionHandler #}
+<div id="votingPanel" class="row no-gutters">
+    <div class="btn-group w-100" role="group">
+        <a class="col btn btn-secondary xmLike xmVoteThis Voteup{{ client.voteObject.liked ? ' active' : '' }}"><img src="/public/icons/upvote-white.png"/></a>
+        <a class="col btn btn-secondary xmDisLike xmVoteThis Votedown{{ client.voteObject.disLiked ? ' active' : '' }}"><img src="/public/icons/downvote-white.png"/></a>
+        <a class="col btn btn-secondary xmLove xmVoteThis{{ client.voteObject.loved ? ' active' : '' }}"><img src="/public/icons/heart-white.png"/></a>
+        <a class="col btn btn-secondary xmShare"><img src="/public/icons/share-white.png"/></a>
+            {% if contentSupply.streamHistory %}
+                <a id="xmMoveLeft" class="col btn btn-secondary hidden-sm-down"
+                   href="{{ contentSupply.streamHistoryPreviousItem.link }}">
+                    <img src="/public/icons/left-chevron-white.png"/>
+                </a>
+            {% endif %}
+            {% if contentSupply.streamList %}
+                <a id="xmMoveRight" class="col btn btn-primary hidden-sm-down"
+                   href="{{ contentSupply.streamListNextItem.link }}">
+                    Next <img class="pl-1" src="/public/icons/right-chevron-white.png"/>
+                </a>
+            {% endif %}
+    </div>
+</div>

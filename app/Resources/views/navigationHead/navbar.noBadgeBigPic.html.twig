@@ -1,0 +1,14 @@
+<nav id="navbar-top" class="navbar navbar-toggleable-md {% if not is_front is defined %} mb-2 {% endif %}">
+    <div class="container px-1 force-center">
+        <a class="navbar-brand text-center text-sm-left" href="/">{{ brand }}</a>
+    </div>
+</nav>
+{% if is_front is defined %}
+<div class="container px-1">
+    <div class="row no-gutters px-1 mt-2">
+        <div class="col-12 xmHalfHigh">
+            <div class="imgUpContainer"></div>
+        </div>
+    </div>
+</div>
+{% endif %}

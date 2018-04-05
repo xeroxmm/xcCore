@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block title %}Contact Form{% endblock %}
+
+{% block meta %}
+    <meta property="og:url" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="{{ brand }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="">
+    <meta property="og:image:width" content="">
+    <meta property="og:image:height" content="">
+
+    <meta name="twitter:url" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta property="article:author" content="{{ brand }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="">
+{% endblock %}
+
+{% block body %}
+<div class="container px-2 text-white">
+    <h1>Contact Form</h1>
+    {{ form_start(form, {'attr': {'class': 'my-form-class'} }) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" class="btn btn-default" />
+    {{ form_end(form) }}
+</div>    
+{% endblock %}

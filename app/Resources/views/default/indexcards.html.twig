@@ -1,0 +1,29 @@
+<div class="row no-gutters">
+    <div class="px-1 w-100">
+        <div class="p-3 mb-2 grid-head-box text-center">
+            <h1>{% if home_head_title is defined %}{{ home_head_title }}{% endif %}</h1>
+            <p class="text-muted">{% if home_head_desc is defined %}{{ home_head_desc }}{% endif %}</p>
+        </div>
+    </div>
+    {% include "/default/sidebarCats.html.twig" ignore missing %}
+    <div class="col">
+        <div class="col-12 px-1 mb-2">
+            {{ include('navigationHead/filterCrumb.html.twig') }}
+        </div>
+
+        <div id="infiniteBox-new" class="xcInfBox card-columns infinite-scroll">
+            {% include "/content/baseLoopCards.html.twig" ignore missing %}
+        </div>
+        {% if contentSupply.moreElements %}
+            <div class="col-12 text-center my-2">
+                <a id="linkLoadRecent-0" href="{{ thisURL }}?page={{ nextPage }}"
+                   rel="noindex, follow">
+                    <button class="btn btn btn-primary col-12 col-sm-6">Load More</button>
+                </a>
+                <!--<script>var link = document.getElementById("linkLoadRecent-0");
+                    link.setAttribute('data-link', "{{ url("apiContentBaseRelated") }}?page={{ nextPage }}&filter=0");
+                    //link.style.display = 'none';</script>-->
+            </div>
+        {% endif %}
+    </div>
+</div>

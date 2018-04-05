@@ -1,0 +1,16 @@
+{# @var content \AppBundle\Entity\Content #}
+<div class="tags-block">
+    {% set tagCount = content.tagArray|length %}
+    {% set tagStyle = '' %}
+    {% set tagClass = '' %}
+    {% if content.tagArray is not empty %}
+        {% for tag in content.tagArray %}
+            {% set tagStyle = loop.index > 5 ? 'display:none' : '' %}
+            {% set tagClass = loop.index > 5 ? 'xmHiddenTag' : '' %}
+            {% if loop.index == 6 %}
+                <a href="#" id="xmShowMoreTags"><div class="btn btn-primary mb-1 mr-1">{{ tagCount - 5 }} more tags</div></a>
+            {% endif %}
+            <a href="/{{ pathTag }}/{{ tag.slug }}" style="{{ tagStyle }}" class="{{ tagClass }}"><div itemprop="articleSection" class="btn btn-outline-primary mb-1 mr-1">{{ tag.label }}</div></a>
+        {% endfor %}
+    {% endif %}
+</div>

@@ -1,0 +1,24 @@
+{% if isDevSer is defined and isDevSer == 1 %}
+    {% include "_development/devbar.html.twig" %}
+{% endif %}
+{% if template_nav is not defined or template_nav == 'default' %}
+    {% if advertisingSlots is defined and advertisingSlots|length > 0 %}
+        <nav id="navbar-friends" class="navbar p-1 navbar-toggleable-md">
+            <div class="container px-2">
+                <span>Friends:</span>
+                    {% for advertisingSlot in advertisingSlots %}
+                        <a class="ml-3" href="{{ advertisingSlot[0] }}" target="_blank">{{ advertisingSlot[1] }}</a>
+                    {% endfor %}
+            </div>
+        </nav>
+    {% endif %}
+    <nav id="navbar-top" class="navbar navbar-toggleable-md mb-2">
+        <div class="container px-2">
+            <a class="navbar-brand text-center text-sm-left mr-auto" href="/">{{ brand }}</a>
+        </div>
+    </nav>
+{% elseif template_nav == 'badge' %}
+    {% include "navigationHead/navbar.badge.html.twig" %}
+{% elseif template_nav == 'noBadgeBigPic' %}
+    {% include "navigationHead/navbar.noBadgeBigPic.html.twig" %}
+{% endif %}

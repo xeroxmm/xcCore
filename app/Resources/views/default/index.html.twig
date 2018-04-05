@@ -1,0 +1,62 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{# @var content \AppBundle\Entity\Content[] #}
+{% set content = contentSupply.baseContent %}
+{% set is_front = 1 %}
+{% extends 'base.html.twig' %}
+{% if postType == "gifs" %}
+    {% set titleStr = brand ~ " Popular GIFs" %}{% else %}
+{% set titleStr = (homepage_title is defined ) ? homepage_title : brand %}{% endif %}
+{# block navBody %}
+    {{ include('navigationHead/filterCrumb.html.twig') }}
+{% endblock #}
+
+{% block description %}{% if home_description is defined %}{{ home_description }}{% endif %}{% endblock %}
+{% block metaLink %}
+    {% include ':content/metaPlugs:metaLink.html.twig' ignore missing %}
+    <link rel="canonical" href="{{ constant('SETTING_PREVENT_SSL') is defined ? 'http:' : 'https'}}://{{ app.request.host ~ app.request.baseUrl ~ app.request.pathInfo }}">
+{% endblock %}
+
+{% block title %}{{ titleStr }}{% endblock %}
+
+{% block body %}
+<div class="container px-0">
+    {% if template_index is defined and template_index == 'category' and (isSemi is not defined or isSemi != true)%}
+    {% include 'default/indexcats.html.twig' %}
+    {% set only = "1" %}
+    {% elseif template_cards is defined and template_cards == '1' and (isSemi is not defined or isSemi != true) %}
+    {% include 'default/indexcards.html.twig' %}
+    {% else %}
+    <div class="row no-gutters">
+        <div class="px-1 w-100">
+            <div class="p-3 mb-2 grid-head-box text-center">
+                <h1>{% if postType == "gifs" %}GIFs | {% endif %}{% if home_head_title is defined %}{{ home_head_title }}{% endif %}</h1>
+                <p class="text-muted">{% if home_head_desc is defined %}{{ home_head_desc }}{% endif %}</p>
+            </div>
+        </div>
+        {% include "/default/sidebarCats.html.twig" ignore missing %}
+        <div class="col">
+            <div class="col-12 px-1 mb-2">
+                {{ include('navigationHead/filterCrumb.html.twig') }}
+            </div>
+
+            <div id="infiniteBox-new" class="xcInfBox row no-gutters infinite-scroll">
+                {% include "/content/baseLoop.html.twig" ignore missing %}
+                {% if contentSupply.moreElements %}
+                    <a id="linkLoadRecent-0" class="col-12 text-center mb-2" href="{{ thisURL }}?page={{ nextPage }}"
+                       rel="noindex, follow">
+                        <button class="btn btn btn-primary col-12 col-sm-6">Load More</button>
+                    </a>
+                    <!--<script>var link = document.getElementById("linkLoadRecent-0");
+                link.setAttribute('data-link', "{{ url("apiContentBaseRelated") }}?page={{ nextPage }}&filter=0");
+                //link.style.display = 'none';</script>-->
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

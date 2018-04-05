@@ -1,0 +1,7 @@
+{% set templateName = (template_voter_position is defined ? template_voter_position : 'default') %}
+
+{% if templateName == 'default' %}
+    {% include 'content/content/userInteraction/voter.html.twig/default.html.twig' %}
+{% elseif templateName == 'showMore' %}
+    {% include 'content/tagContainer/withMore.html.twig' %}
+{% endif %}

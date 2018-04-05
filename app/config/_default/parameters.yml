@@ -1,0 +1,78 @@
+parameters:
+    image_empty_title_manifest: 'funny-image-'
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: the_database_name
+    database_user: the_database_user
+    database_password: the_database_password
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 2751616611111872119218118114212246111871
+
+    arbitrage:
+        use: 0
+        networks:
+          #- { name: plugrush, id: theID }
+          - { name: popcash, id: 111/222 }
+
+    email:
+        abuse: ''
+        contactCollector:
+          - 'themail@example.com'
+
+    template:
+        elementCounter:
+            related: 12
+            looped: 16
+
+twig:
+    globals:
+        # brand name for logo */
+        brand: TheDefault Website
+        # frontpage html title */
+        homepage_title: "This funny Websites uses xcMiniCore"
+        # frontpage html description */
+        home_description: Discover thousands of free pics and Gifs! Filter by best and new images and Gifs - updated daily.
+        # frontpage box widget content */
+        home_head_title: "Enjoy thousands of free images and GIFs"
+        home_head_desc: "Daily Updated - No Popups - No Bullshit"
+        # http or https */
+        protocol: https:
+        # Google Analytics ID */
+        analyticsID: ""
+        # Mobile Chrome Browser Themecolor */
+        themecolor: 517BE7
+        # Google Search Console ID */
+        googleSiteVerification: ""
+        # Related Images Template (default,) */
+        template_related: default
+        template_content_tag: showMore
+        # frontpage template (default,category,modern) */
+        template_index: category
+        # show trade plugs */
+        trade: 1
+
+        # header friends sidewide link */
+        advertisingSlots:
+            - [ http://www.example.com, The ExamplE onE ]
+
+        # banner slots */
+        banner:
+            #i_slot_1: { type: 'bannerExoClicks', id: '111', width: '300', height: '250' }
+            #i_slot_2: { type: 'bannerExoClicks2', id: '222' }
+            #i_slot_3: { type: 'bannerExoClicks2', id: '333' }
+
+        # categories for the sidebar menu */
+        sidebar_cats:
+          - { url: 'popular', text: 'Popular', class: 'brand-top' }
+          - { url: 'cats', text: 'Cats' }
+          - { url: 'coffee', text: 'Coffee' }
+
+snc_redis:
+    clients:
+        default:
+            dsn: redis://127.0.0.1:6379/49
+        doctrine:
+            dsn: redis://127.0.0.1:6379/49

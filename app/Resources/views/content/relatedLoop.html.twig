@@ -1,0 +1,19 @@
+{% if content %}
+    {% if not template_related is defined or template_related == 'default' %}
+        {% include "relatedContentLoops/default.html.twig" ignore missing %}
+    {% elseif template_related == 'chimera' %}
+        {% include "relatedContentLoops/chimera.html.twig" ignore missing %}
+    {% elseif template_related == 'hydra' %}
+        {% include "relatedContentLoops/hydra.html.twig" ignore missing %}
+    {% elseif template_related == 'gray' %}
+        {% include "relatedContentLoops/gray.html.twig" ignore missing %}
+    {% elseif template_related == 'cards' %}
+        {% include "relatedContentLoops/cards.html.twig" ignore missing %}
+    {% endif %}
+{% endif %}
+
+{% if nextPaginationPage is defined and nextPaginationPage %}
+    <a href="?page={{ nextPaginationPage }}&filter=0&cID={{ content.ID }}" data-link="{{ url('apiContentInfoRelated') }}?page={{ nextPaginationPage }}&filter=0&cID={{ content.ID }}" class="nextPagionationLink col-12 text-center mb-2" rel="noindex, follow">
+    <button class="btn btn-primary col-12 col-sm-6">Load More</button></a>
+{% endif %}
+<!-- {{ "now"|date("d.m.Y H:i") }} -->

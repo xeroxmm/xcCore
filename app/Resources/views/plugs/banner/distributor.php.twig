@@ -1,0 +1,18 @@
+{% if banner is defined and adSlot is defined %}
+    {% if banner[adSlot] is defined and banner[adSlot]['type'] is defined %}
+        {% set useBannerSlot = banner[adSlot]['use'] is not defined or banner[adSlot]['type'] == '1' ? 1 : 0 %}
+        {% if banner[adSlot]['id'] is defined and banner[adSlot]['id'] != '' and useBannerSlot %}
+            {% set adIDZone = banner[adSlot]['id'] is defined ? banner[adSlot]['id'] : '' %}
+            {% set adS_1 = banner[adSlot]['s1'] is defined ? banner[adSlot]['s1'] : '' %}
+            {% set adS_2 = banner[adSlot]['s2'] is defined ? banner[adSlot]['s2'] : '' %}
+            {% set adS_3 = banner[adSlot]['s3'] is defined ? banner[adSlot]['s3'] : '' %}
+            {% set adS_5 = banner[adSlot]['s5'] is defined ? banner[adSlot]['s5'] : '' %}
+
+            {% set adWidth = banner[adSlot]['width'] is defined ? banner[adSlot]['width'] : '' %}
+            {% set adHeight = banner[adSlot]['height'] is defined ? banner[adSlot]['height'] : '' %}
+
+            {% include 'plugs/banner/' ~ banner[adSlot]['type'] ~ '.html.twig' ignore missing %}
+        {% endif %}
+    {% endif %}
+{% endif %}
+{% set slot = '' %}

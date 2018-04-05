@@ -1,0 +1,22 @@
+
+/* Cards */
+
+.card-header {
+    background-color: #fff;
+}
+.xmVoteThis {
+    color: #AAAAAA;
+    cursor: pointer;
+}
+.xmVoteThis.active {
+    color: #222222;
+}
+.xmVoteThis.xmLove.active {
+    color: #ff249b;
+}
+.xmVoteThis:hover {
+    color: #888888;
+}
+.xmVoteThis.xmLove:hover {
+    color: #ffa2b9;
+}

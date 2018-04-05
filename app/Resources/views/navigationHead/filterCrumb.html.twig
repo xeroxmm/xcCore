@@ -1,0 +1,82 @@
+{# @var content \AppBundle\Template\ContentBase #}
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{% set focus_1 = contentSupply.latestContext ? ' active' : '' %}
+{% set focus_2 = contentSupply.popularContext ? ' active' : '' %}
+{% set focus_3 = contentSupply.relatedContext ? ' active' : '' %}
+
+<div class="row no-gutters">
+  <ul class="nav nav-tabs col-6 hidden-sm-down">
+    {% if contentSupply.elementsInCategories > 0 %}
+    <li class="nav-item">
+      <a class="nav-link{{ contentSupply.filterContextAll ? ' active' : '' }}" href="{{ contentSupply.filterURL }}">All</a>
+    </li>
+    {% endif %}
+    {% if contentSupply.elementsInCategories('images') > 0 %}
+    <li class="nav-item">
+      <a class="nav-link{{ contentSupply.filterContextImage ? ' active' : '' }}" href="{{ contentSupply.filterURL('images') }}">Images</a>
+    </li>
+    {% endif %}
+    {% if contentSupply.elementsInCategories('gifs') > 0 %}
+    <li class="nav-item">
+      <a class="nav-link{{ contentSupply.filterContextGif ? ' active' : '' }}" href="{{ contentSupply.filterURL('gifs') }}">GIFs</a>
+    </li>
+    {% endif %}
+    {% if not contentSupply.TypeContextCollection and contentSupply.elementsInCategories('collections') > 0 %}
+      {% if template_use_collections is defined and template_use_collections == 1 %}
+      <li class="nav-item">
+        <a class="nav-link{{ contentSupply.filterContextCollection ? ' active' : '' }}" href="{{ contentSupply.filterURL('collections') }}">Collections</a>
+      </li>
+      {% endif %}
+    {% endif %}
+  </ul>
+
+  {% if contentSupply.elementsInCategories > 0 %}
+  <div id="media-filter-button" class="col-6 pr-1 hidden-md-up">
+    <button class="filter-dropdown dropdown-toggle" type="button" id="MediaMenuButton">
+        {{ contentSupply.filterContextAll ? 'All Media' : '' }}
+        {{ contentSupply.filterContextImage ? 'Images' : '' }}
+        {{ contentSupply.filterContextGif ? 'GIFs' : '' }}
+    </button>
+    <div id="MediaMenu" class="filter-dropdown-menu mr-1">
+      <a class="filter-dropdown-item{{ contentSupply.filterContextAll ? ' active' : '' }}" href="{{ contentSupply.filterURL }}">All Media</a>
+        {% if contentSupply.elementsInCategories('images') > 0 %}
+      <a class="filter-dropdown-item{{ contentSupply.filterContextImage ? ' active' : '' }}" href="{{ contentSupply.filterURL('images') }}">Images</a>
+        {% endif %}
+        {% if contentSupply.elementsInCategories('gifs') > 0 %}
+      <a class="filter-dropdown-item{{ contentSupply.filterContextGif ? ' active' : '' }}" href="{{ contentSupply.filterURL('gifs') }}">GIFs</a>
+        {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+
+  {% if not contentSupply.TypeContextSearch %}
+  <ul class="nav nav-tabs col-6  justify-content-end hidden-sm-down">
+  <li class="nav-item">
+    <a class="xcUseNewList xcUseList nav-link{{ focus_1|raw }}" href="{{ contentSupply.thisURL('/') }}" data-target="infiniteBox-new">Latest</a>
+  </li>
+  <li class="nav-item">
+    <a class="xcUsePopList xcUseList nav-link{{ focus_2|raw }}" href="{{ contentSupply.thisURL }}/popular" data-target="infiniteBox-pop">Popular</a>
+  </li>
+  {% if contentSupply.TypeContextCollection %}
+    <li class="nav-item">
+      <a class="xcUsePopList xcUseList nav-link{{ focus_3|raw }}" href="{{ contentSupply.thisURL }}/related" data-target="infiniteBox-pop">Related</a>
+    </li>
+  {% endif %}
+  </ul>
+  {% endif %}
+
+  {% if not contentSupply.TypeContextSearch %}
+    <div id="popular-filter-button" class="col-6 pl-1 hidden-md-up">
+      <button class="filter-dropdown dropdown-toggle" type="button" id="FilterMenuButton">
+          {{ focus_1|raw ? 'Latest' : '' }}
+          {{ focus_2|raw ? 'Popular' : '' }}
+      </button>
+      <div id="FilterMenu" class="filter-dropdown-menu ml-1">
+        <a class="filter-dropdown-item{{ focus_1|raw }}" href="{{ contentSupply.thisURL('/') }}" data-target="infiniteBox-new" rel="nofollow">Latest</a>
+        <a class="filter-dropdown-item{{ focus_2|raw }}" href="{{ contentSupply.thisURL }}/popular" data-target="infiniteBox-pop" rel="nofollow">Popular</a>
+      </div>
+    </div>
+  {% endif %}
+
+</div>

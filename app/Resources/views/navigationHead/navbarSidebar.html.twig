@@ -1,0 +1,49 @@
+{% if isDevSer is defined and isDevSer == 1 %}
+    {% include "_development/devbar.html.twig" %}
+{% endif %}
+{% if template_nav is not defined or template_nav == 'default' %}
+    {% if advertisingSlots is defined and advertisingSlots|length > 0 %}
+        <nav id="navbar-friends" class="navbar p-1 navbar-toggleable-md">
+            <div class="container px-1">
+                <span>Friends:</span>
+                {% for advertisingSlot in advertisingSlots %}
+                    <a class="ml-3" href="{{ advertisingSlot[0] }}" target="_blank">{{ advertisingSlot[1] }}</a>
+                {% endfor %}
+            </div>
+        </nav>
+    {% endif %}
+    <div class="container px-0 px-md-1">
+        <nav id="navbar-top" class="navbar p-0 my-0">
+            <div class="row no-gutters" style=" width: 100%;">
+                <div id="sidebar-button" class="col col-auto hidden-lg-up">
+                    <button class="btn btn-menu">
+                        <img src="/public/icons/menu-button-white.png"></button>
+                </div>
+                <div class="col col-auto px-3 hidden-md-down brand-top">
+                    <a class="navbar-brand mx-0" href="/">{{ brand }}</a>
+                </div>
+                <div class="col">
+                    <form class="search-form-top" action="/search" method="post"
+                          pmbx_context="B076DD30-2997-4A31-AAB4-D26885C3EF55">
+                        <div class="input-group">
+                            <input name="search" type="text" class="form-control" placeholder="Search for..."
+                                   value="{{ searchterm is defined ? "" ~ searchterm : "" }}" id="xcSearchField"
+                                   required="" pmbx_context="665DC300-87E7-4AFF-9A10-EC0D88860C0B" style="width: 100%;">
+                        </div>
+                    </form>
+                    <div>
+                    </div>
+                </div>
+                <div class="col col-auto">
+                    <button class="btn" type="submit" id="xcSearchBtn">
+                        <img src="/public/icons/search-white.png">
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+{% elseif template_nav == 'badge' %}
+    {% include "navigationHead/navbar.badge.html.twig" %}
+{% elseif template_nav == 'noBadgeBigPic' %}
+    {% include "navigationHead/navbar.noBadgeBigPic.html.twig" %}
+{% endif %}

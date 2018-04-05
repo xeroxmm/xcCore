@@ -1,0 +1,415 @@
+/* Global */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 170px;
+}
+
+.text-black {
+    color: #000;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+/* Footer */
+#footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 170px;
+    overflow: hidden;
+}
+
+/* Cards */
+.card {
+    border: none;
+}
+
+.xmVoteThis {
+    color: #AAAAAA;
+    cursor: pointer;
+}
+
+.xmVoteThis.active {
+    color: #222222;
+}
+
+.xmVoteThis.xmLove.active {
+    color: #ff249b;
+}
+
+.Voteup:hover {
+    color: #12d022;
+}
+
+.Votedown:hover {
+    color: #e75151;
+}
+
+.xmVoteThis.xmLove:hover {
+    color: #ffa2b9;
+}
+
+/* Search Form */
+
+#xcSearchField {
+    border-radius: 0;
+    margin: 0;
+}
+
+#xcSearchBtn {
+    border-radius: 0;
+}
+
+/*Sidebar Nav */
+
+.sidebar-menu {
+    display: none;
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+}
+
+.btn-menu {
+    height: 38px;
+}
+
+/* Navbar */
+
+#navbar-friends {
+    font-size: 80%;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+#navbar-top {
+    z-index: 101;
+}
+
+.navbar-brand {
+    font-weight: 400;
+}
+
+#xcSearchBtn {
+    height: 38px;
+}
+
+/* Grid */
+
+.grid-head-box h1 {
+    font-size: 1.6rem;
+}
+
+.img-thumbnail {
+    padding: 0;
+    border-radius: 0;
+    width: 100%;
+}
+
+.grid-item-thumb {
+    -webkit-box-shadow: 0 1px 5px rgba(16, 22, 26, .2);
+    box-shadow: 0 1px 5px rgba(16, 22, 26, .2);
+}
+
+.grid-media-title {
+    position: absolute;
+    z-index: 100;
+    bottom: 2px;
+    background-color: rgba(58, 60, 62, 0.70);
+    color: #fff;
+    left: 2px;
+    right: 2px;
+    display: none;
+    font-size: 80%;
+}
+
+.xcCapsule:hover .grid-media-title {
+    display: block;
+}
+
+.relatedCapsule:hover .grid-media-title {
+    display: block;
+}
+
+/* Content Filter */
+
+.nav-tabs .nav-link {
+    border: none;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    font-weight: 600;
+}
+
+.filter-dropdown {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: .5em 1em;
+}
+
+.filter-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: none;
+    min-width: 10rem;
+    font-size: 1rem;
+    color: #292b2c;
+    text-align: left;
+    list-style: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.filter-dropdown-item {
+    display: block;
+    width: 100%;
+    clear: both;
+    font-weight: 400;
+    padding: .5em 1em;
+}
+
+/* Images */
+
+.img-single-box {
+    position: relative;
+}
+
+.img-single {
+    max-height: 75vh;
+}
+
+.video-single {
+    max-height: 75vh;
+}
+
+img.img-thumbnail {
+    min-height: 100%;
+    height: 100%;
+}
+
+.badgeTop {
+    z-index: 100;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .36);
+    color: #222;
+    font-weight: 400;
+    font-size: 90%;
+}
+
+.badgeMedia {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    margin-top: 2px;
+    margin-left: 2px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .36);
+    color: #222;
+    font-weight: 700;
+    font-size: 90%;
+}
+
+/* Cards */
+
+.xmWing {
+    height: 100%;
+    width: 50%;
+    margin-left: 25%;
+    display: table;
+    cursor: pointer;
+}
+
+.contentWing {
+    width: 100%;
+    text-align: center;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Media Action Buttons */
+
+.xmVoteThis {
+    cursor: pointer;
+}
+
+/* List Groups */
+
+.list-group-item-blank {
+    border: none;
+    background-color: transparent;
+}
+
+/* responsive queries */
+@media (max-width: 768px) {
+    .h1, h1 {
+        font-size: 1.2rem !important;
+    }
+
+    .text-muted {
+        font-size: 80% !important;
+    }
+
+    .btn {
+        font-size: .9rem;
+        padding: .5rem .8rem;
+    }
+
+    .sidebar-menu-front {
+        display: none;
+        position: absolute;
+        z-index: 101;
+        top: 0;
+        left: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .exo-native-widget {
+        max-width: 100% !important;
+    }
+    .exo-native-widget .clear {
+        clear: none !important;
+    }
+    .exo-native-widget-outer-container {
+        margin: 0 auto !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .h1, h1 {
+        font-size: 1rem !important;
+    }
+    .card-columns {
+        column-count: 2;
+        column-gap: 2px;
+    }
+    .exo-native-widget-item-image, .exo-native-widget-item {
+        width: 100% !important;
+    }
+    .badgeTop {
+        font-size: 60%;
+    }
+}
+
+@media (min-width: 576px) {
+    .container {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    .h1, h1 {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
+    .card-columns {
+        column-count: 3;
+        column-gap: 2px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 960px;
+    }
+
+    .h1, h1 {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
+    .content-sidebar {
+        width: 250px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1140px;
+    }
+
+    .h1, h1 {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
+}
+
+/* Exo */
+.xcExoB {
+    text-align: center;
+}
+
+.xcExoB iframe {
+    margin: 0 auto;
+}
+
+/* Share Overlay */
+
+.share-overlay-custom {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.overlay-close {
+    position: absolute;
+    right: 0;
+    top: 10%;
+    cursor: pointer;
+}
+
+.card-columns {
+    column-count: 4;
+    column-gap: 0;
+}
+.card-img-top {
+    width: 100%;
+}
+.exo-native-widget {
+    margin: 0 auto;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+.exo-native-widget-item-container {
+    width: 100%;
+    margin-bottom: 9px;
+}
+.exo-native-widget .clear {
+    clear: both;
+}

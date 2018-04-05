@@ -1,0 +1,75 @@
+/* Global */
+#base {
+	background-color: #f1f1f1;
+}
+
+/* Navbar */
+
+#navbar-top {
+	background-color: #fff;
+    border-bottom: 1px solid #e8e8e8;
+}
+.navbar-brand {
+	font-weight: 700;
+    color: #404040;
+}
+
+/* Grid */
+.grid-head-box {
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);	
+}
+.img-thumbnail {
+	padding: 0;
+	border-radius: 0;
+	width: 100%;
+	border: 1px solid #f1f1f1;
+}
+.img-thumbnail:hover {
+	border: 1px solid #014c8c;
+}
+.img-single {
+	border-bottom: 1px solid rgba(0,0,0,.125);	
+}
+.grid-item-thumb {
+	-webkit-box-shadow: 0 1px 5px rgba(16,22,26,.2);
+    box-shadow: 0 1px 5px rgba(16,22,26,.2);
+}
+
+/* Content Filter */
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #2c2c2c;
+    background-color: transparent;
+    border-bottom: 3px solid #2c2c2c;
+}
+.nav-tabs .nav-link {
+    border: none;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    font-weight: 600;
+    color: #014c8c;
+}
+
+/* Cards */
+
+.card-header {
+	background-color: #fff;
+}
+.xmVoteThis {
+	color: #AAAAAA;
+	cursor: pointer;
+}
+.xmVoteThis.active {
+	color: #222222;
+}
+.xmVoteThis.xmLove.active {
+	color: #ff249b;
+}
+.xmVoteThis:hover {
+	color: #888888;
+}
+.xmVoteThis.xmLove:hover {
+	color: #ffa2b9;
+}

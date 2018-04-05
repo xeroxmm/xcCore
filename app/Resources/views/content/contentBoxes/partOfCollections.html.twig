@@ -1,0 +1,14 @@
+{# @var content \AppBundle\Entity\Content #}
+{# @var ct \AppBundle\Entity\Content #}
+{% if content.childOfContent %}
+    {% for ct in content.subContentObj(4) %}
+        <a href="{{ ct.fullURL }}">
+            <div class="col-12 p-1 mb-3 grid-head-box text-center" style="overflow: hidden; min-height: 75px;display: table;">
+            <div style="position:absolute; width: 50px; height: 50px; top: 10px; left: 5px;">
+                <img style="height:100%;" src="/{{ pathImageSmall }}/{{ ct.thumbnailURL }}" alt="Thumbnail of Post {{ ct.fullURL }}"/>
+            </div>
+            <h5 style="display: table-cell; vertical-align: middle; padding-left: 60px;" class="mr-3 text-center">{{ ct.title }}</h5>
+        </div>
+        </a>
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,12 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{% if contentSupply.streamContentEntities|length > 0 %}
+    {% for ct in contentSupply.streamContentEntities %}
+        {# var ct \Entity\Content #}
+        <div class="col-4 pl-1 mb-2{{ loop.last and loop.index0 > 1 ? '' :'' }}">
+            <a href="{{ ct.link }}">
+                <img class="img-fluid grid-item-thumb img-thumbnail" src="/{{ pathImageSmall }}/{{ ct.thumbnailURL }}"
+                     alt="{{ ct.title }}"/>
+            </a>
+        </div>
+    {% endfor %}
+{% endif %}

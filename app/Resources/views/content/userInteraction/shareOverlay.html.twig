@@ -1,0 +1,33 @@
+<div class="share-overlay-custom">
+    <div class="row no-gutters text-center px-3 px-md-5">
+        <div class="col-12">
+            <div class="overlay-close"><img src="/public/icons/close-white.png"/></div>
+            <p class="text-white my-3 mt-5">Share</p>
+            <div class="btn-group mb-3" role="group">
+                <a href="https://www.stumbleupon.com/submit?url={{ content.CanonicalURL|url_encode }}&title={{ content.title|url_encode }}"
+                   class="btn px-1" target="_blank"><img
+                            src="/public/icons/social/stumbleupon.png"/></a>
+                <a href="https://www.reddit.com/submit?url={{ content.CanonicalURL|url_encode }}&title={{ content.title|url_encode }}"
+                   class="btn px-1" target="_blank"><img src="/public/icons/social/reddit.png"/></a>
+                <a href="https://pinterest.com/pin/create/button/?url={{ content.CanonicalURL|url_encode }}&media={{ content.getServerURL ~ pathImageSmall ~ "/" ~ content.thumbnailObj.thumbnailLinkURL|url_encode }}&description={{ content.title|url_encode }}"
+                   class="btn px-1" target="_blank"><img
+                            src="/public/icons/social/pinterest.png"/></a>
+                <a href="whatsapp://send?text={{ content.CanonicalURL|url_encode }}"
+                   class="btn px-1" target="_blank"><img
+                            src="/public/icons/social/whatsapp.png"/></a>
+                <a href="https://twitter.com/intent/tweet?url={{ content.CanonicalURL|url_encode }}"
+                   class="btn px-1" target="_blank"><img
+                            src="/public/icons/social/twitter.png"/></a>
+                <a href="https://www.tumblr.com/widgets/share/tool/preview?shareSource=legacy&canonicalUrl=&url={{ content.CanonicalURL|url_encode }}&posttype=link&title={{ content.title|url_encode }}&caption=&content={{ content.CanonicalURL|url_encode }}"
+                   class="btn px-1" target="_blank"><img src="/public/icons/social/tumblr.png"/></a>
+                <a href="https://vk.com/share.php?url={{ content.CanonicalURL|url_encode }}&image={{ content.getServerURL ~ pathImageSmall ~ "/" ~ content.thumbnailObj.thumbnailLinkURL|url_encode }}&title={{ content.title|url_encode }}"
+                   class="btn px-1" target="_blank"><img src="/public/icons/social/vk.png"/></a>
+            </div>
+            <div class="input-group" style="max-width: 500px;margin:0 auto">
+                <input id="copylink" type="text" value="{{ content.CanonicalURL }}" class="form-control" style="border: 1px solid #fff;">
+                <span  data-clipboard-target="#copylink" class="btncopy input-group-addon btn-primary" id="btnGroupAddon" style="border-color: #6d6d6d00;">Copy</span>
+            </div>
+        </div>
+    </div>
+
+</div>

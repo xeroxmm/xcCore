@@ -1,0 +1,9 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+<div class="col-12 p-3 mb-3 grid-head-box text-center xmTagImgBox">
+    <div class="d-table-cell">
+        <h1>#{{ title }}</h1>
+    </div>
+    <div class="xmTagBackImg" style="background-image: url('/img/m/{{ contentSupply.tagContent.contentObjArraysFirstEntry.thumbnailURL }}');">
+        <img src="/img/m/{{ contentSupply.tagContent.contentObjArraysFirstEntry.thumbnailObj.thumbnailLinkURL(1) }}" width="0" height="0">
+    </div>
+</div>

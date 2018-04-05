@@ -1,0 +1,35 @@
+{# @var ads \AppBundle\Tools\Advertisement\ContentInjectContainer #}
+{% set useAds = 0 %}
+{% if ads is defined %}
+    {% set useAds = 1 %}
+{% endif %}
+
+{% if content %}
+    {% set counter = 0 %}
+    {% for ct in content %}
+        {% set counter = counter + 1 %}
+        {% set mixer = 4 + (counter % 7) %}
+        {% set mixer2 = 21 + (counter % 23) %}
+        {% if content.length > 14 and useAds and ads.length and ads.AdPosition( counter ) %}
+            <div class="col-lg-3 col-md-3 col-sm-4 col-12 mb-2 px-0 px-sm-1 adPlug noGrayScale">
+                <a href="{{ ads.link }}" target="_blank" rel="external">
+                    <div><div class="badgeTop px-1"><span>{{ ads.DomainURL }}</span></div></div>
+                    <img class="img-fluid img-thumbnail grid-item-thumb" alt="{{ ads.title }}"
+                         src="/img/t/{{ ads.thumb }}"/>
+                </a>
+            </div>
+            {{ ads.delete }}
+        {% else %}
+            <div id="e_{{ ct.basedID }}" class="col-lg-2 col-md-4 col-sm-6 col-6 mb-2 px-0 px-sm-0 {{ mixer % 5 == 0 or mixer2 % 5 == 0 ? 'noGrayScale' : '' }}">
+                <a class="loadInDOM " title="{{ ct.title }}" href="{{ ct.FullURL }}">
+                    <img class="img-thumbnail grid-item-thumb" src="{{ ct.thumbURL }}"
+                         alt="{{ ct.thumbAlt }}"{% if loop.first %} height="300" width="300"{% endif %}/>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% if nextPaginationPage is defined and nextPaginationPage %}
+    <a href="?page={{ nextPaginationPage }}&filter={{ filter is defined and filter > 0 ? filter : 0 }}" data-link="{{ url('apiContentTagRelated') }}?tagID={{ tagID }}&page={{ nextPaginationPage }}&filter={{ filter is defined and filter > 0 ? filter : 0 }}"
+       class="nextPagionationLink col-12 text-center mb-2" rel="noindex, follow"><button class="btn btn-primary col-12 col-sm-6">Load More</button></a>
+{% endif %}

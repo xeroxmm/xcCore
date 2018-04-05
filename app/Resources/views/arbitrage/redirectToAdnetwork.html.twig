@@ -1,0 +1,18 @@
+{% set adURL = path('homepage') %}
+{% if network is defined and id is defined %}
+    {% if network == 'plugrush' and id != '123' %}
+        {% set adURL = 'http://prpops.com/p/' ~ id ~ '/direct' %}
+    {% elseif network == 'popcash' %}
+        {% set adURL = 'http://popcash.net/world/go/' ~ id %}
+    {% endif %}
+{% endif %}
+<!DOCTYPE html>
+<html>
+<head><title>Please be patient...</title>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="data:,">
+    <meta http-equiv="refresh" content="2; URL={{ adURL }}">
+    <script>window.location.replace( '{{ adURL }}' );</script>
+</head>
+<body></body>
+</html>

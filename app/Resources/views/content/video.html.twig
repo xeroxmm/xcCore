@@ -1,0 +1,108 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{% set content = contentSupply.postContent %}
+{% extends 'base.html.twig' %}
+
+{% block title %}GIF {{ content.title }}{% endblock %}
+{% block metaIndex %}{% include ':content/metaPlugs:metaNoIndex.html.twig' ignore missing %}{% endblock %}
+{% block meta %}
+    <meta property="og:title" content="{{ content.title }}">
+    <meta property="og:type" content="video">
+    <meta property="og:url" content="{{ content.CanonicalURL }}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:description" content="{{ content.description }}">
+    <meta property="og:site_name" content="{{ brand }}">
+    <meta property="og:image"
+          content="{{ content.getServerURL ~ pathImageSmall ~ "/" ~ content.thumbnailObj.thumbnailLinkURL }}">
+    <meta property="og:image:width" content="{{ content.thumbnailObj.dimX }}">
+    <meta property="og:image:height" content="{{ content.thumbnailObj.dimY }}">
+
+    <meta name="twitter:url" content="{{ content.CanonicalURL }}">
+    <meta name="twitter:title" content="{{ content.title }}">
+    <meta name="twitter:description" content="{{ content.description }}">
+    <meta property="article:author" content="{{ brand }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image"
+          content="{{ content.getServerURL ~ pathImageSmall ~ "/" ~ content.thumbnailObj.thumbnailLinkURL }}">
+    <!--meta date: {{ contentSupply.postContent.parameterObj.date }} -->
+    <link rel="canonical" href="{{ content.CanonicalURL }}">
+{% endblock %}
+{% block description %}{{ content.description|length < 1 ? 'Sexy GIF posted on ' ~ brand ~ '. Discover way more hot images, GIFs and videos by category and popular.' : content.description }}{% endblock %}
+{% block body %}
+<div id="single-image" class="container px-0">
+    <div class="row no-gutters">
+
+        <!--{% include 'plugs/banner/messageBox.html.twig' ignore missing %}-->
+        {% include('default/sidebar.html.twig') %}
+        <div class="col-12 px-0 hidden-md-up text-center">
+            <div class="row no-gutters">
+                {% if contentSupply.streamHistory %}
+                    <div class="col-6 py-2 pl-2 pr-1 py-lg-0">
+                        <a id="xmMoveLeft" class="btn btn-secondary w-100" style="border-radius:0;"
+                           href="{{ contentSupply.streamHistoryPreviousItem.link }}">
+                            <img src="/public/icons/left-chevron-white.png"/>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if contentSupply.streamList %}
+                    <div class="col-6 py-2 pl-1 pr-2 py-lg-0">
+                        <a id="xmMoveRight" class="btn btn-secondary w-100" style="border-radius:0;"
+                           href="{{ contentSupply.streamListNextItem.link }}">
+                            Next Post <img class="pl-1" src="/public/icons/right-chevron-white.png"/>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-sm-12 col-lg px-0 px-md-1 px-sm-0 pl-lg-1 pr-lg-1">
+            <div itemprop="video" itemscope itemtype="http://schema.org/VideoObject" class="card">
+                <meta itemprop="thumbnailUrl"
+                      content="{{ content.getServerURL ~ pathImageSmall ~ "/" ~ content.thumbnailObj.thumbnailLinkURL }}"/>
+                <div class="text-center img-single-box">
+                    <div class="embed-responsive embed-responsive-16by9 video-single"
+                         style="position:relative; height: 100%;">
+                        {% include 'content/userInteraction/shareOverlay.html.twig' ignore missing %}
+                        {{ contentSupply.postContent.videoObj.embedString('videoplayer')|raw }}
+                    </div>
+                </div>
+                <div id="content-action-bar" class="p-0 card-block">
+                    <div class="w-100 px-0">
+                        {% if(template_voter_position is not defined or template_voter_position == 'default') %}
+                            {% include 'content/userInteraction/voter.html.twig' ignore missing %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-block pl-3 pl-md-0">
+                    <h1 itemprop="name"
+                        class="image-title">{% if content.title is not empty %}{{ content.title|raw }}{% else %}<i>Title
+                            not provided</i>{% endif %}</h1>
+                    {% if content.description %}<p itemprop="description"
+                                                   class="card-text">{{ content.description }}</p>{% endif %}
+                    {% include 'content/tagContainer/distributor.twig' ignore missing %}
+                </div>
+            </div>
+        </div>
+        <div class="col col-lg-auto mb-3 mb-lg-3 mt-lg-0 content-sidebar">
+            {% if trade is defined %}
+            {% include 'plugs/banner/trade.sidebar.html.twig' ignore missing %}
+            {% else %}
+            {% set adSlot = 'i_slot_2' %}
+            {% include 'plugs/banner/distributor.php.twig' ignore missing %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'content/related.html.twig' ignore missing %}
+    {% if trade is defined %}
+    <div class="col-12 px-0 my-3">
+        {% include 'plugs/banner/trade.html.twig' ignore missing %}
+    </div>
+    {% else %}
+    <div class="col-12 px-0 px-md-1 mt-3">
+        {% set adSlot = 'i_slot_3' %}
+        {% include 'plugs/banner/distributor.php.twig' ignore missing %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+

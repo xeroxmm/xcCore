@@ -1,0 +1,8 @@
+<div id="xc-sidebar-menu" class="col-sm-4 col-lg-3 px-0 px-md-1 sidebar-menu">
+    <ul class="list-group list-sidebar">
+        <a href="/"><li class="list-group-item sidebar-list-item">Frontpage</li></a>
+        {% for item in sidebar_cats %}
+            <a href="/t/{{ item.url }}"><li class="list-group-item sidebar-list-item">{{ item.text }}</li></a>
+        {% endfor %}
+    </ul>
+</div>

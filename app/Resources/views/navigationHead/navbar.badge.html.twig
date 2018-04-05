@@ -1,0 +1,27 @@
+<div class="wrap">
+    <div class="container">
+        <div class="row badge-container">
+            <div class="col-12 px-1 col-xs-12 px-xs-0 col-sm-12 px-sm-0 col-md-12 px-md-0 col-lg-12 px-lg-1">
+                <div class="width-100 my-border">
+                    <div class="auto-center mx-auto to-up-1{% if not is_front is defined %} mb-2 pb-2{% endif %}">
+                        <a class="navbar-brand text-center text-left" href="/">
+                            <div class="badge-color"><img src="/img/android-icon-36x36.png"/></div>
+                            <div class="badge-brand">{{ brand }}</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% if is_front is defined %}
+                <div class="col-12 xmHalfHigh">
+                    <div class="imgUpBox">
+                        <a href="#">
+                            <div class="filter imgUpContainer"><img src="/img/upperImg.jpg" width="0" height="0"/></div>
+                            <div class="text">
+                                <p>{{ template_nav_text is defined ? template_nav_text : 'high passion' }}</p></div>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

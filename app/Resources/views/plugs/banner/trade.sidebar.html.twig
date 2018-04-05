@@ -1,0 +1,50 @@
+{% set plugs_array = [{
+    'url': 'http://motherless.com/D8E265C',
+    'text': 'motherless.com',
+    'image': '/img/t/0/0/0/1l/489.jpeg'},{
+    'url': 'http://xmissy.nl/item/166475/selfie-shots-40',
+    'text': 'xmissy.nl',
+    'image': '/img/t/0/0/0/1m/0.jpeg'},{
+    'url': 'http://xmissy.nl/item/168305/pix-mix-1027',
+    'text': 'xmissy.nl',
+    'image': '/img/t/0/0/0/1l/498.jpeg'}] %}
+{#
+<div class="row no-gutters mx-0 mx-md-1 wrap-related p-3 px-lg-1">
+    {% for item in plugs_array %}
+        <div class="col-lg-12 col-md-4 col-sm-4 col-4 mb-0 mb-lg-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'motherless');"><a
+                    href="{{ item.url }}"
+                    title="" target="_blank" rel="external">
+                <div>
+                    <div class="badgeTop px-2 py-1"><span>{{ item.text }}</span></div>
+                </div>
+                <img class="img-fluid img-thumbnail grid-item-thumb"
+                     src="{{ item.image }}"></a></div>
+    {% endfor %}
+</div>#}
+<div class="row no-gutters mx-0 mx-md-1 wrap-related p-3 px-lg-1">
+{% if advertisementContainer is defined %}
+        {% if advertisementContainer.elements(3) %}
+            {% set adItem = advertisementContainer.nextElement %}
+            {% for i in 0..2 if adItem is not null %}
+                <div class="col-lg-12 col-md-4 col-sm-4 col-4 mb-0 mb-lg-2 px-1" onclick="ga('send', 'event', 'tradeplugs', '{{ adItem.hosterName }}');">
+                    <a href="{{ adItem.link }}" title="" target="_blank" rel="external">
+                        <div>
+                            <div class="badgeTop px-2 py-1"><span>{{ adItem.hosterName }}</span></div>
+                        </div>
+                        <img class="img-fluid img-thumbnail grid-item-thumb" alt="{{ adItem.title }}"
+                             src="/{{ pathImageSmall }}/{{ adItem.imageURLAbsolute }}"></a></div>
+                {% if(i != 2) %}
+                    {% set adItem = advertisementContainer.nextElement %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="col-lg-12 col-md-4 col-sm-4 col-4 mb-0 mb-lg-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'motherless');"><a href="http://motherless.com/D8E265C" title="" target="_blank" rel="external"><div><div class="badgeTop px-2 py-1"><span>motherless.com</span></div></div><img class="img-fluid img-thumbnail grid-item-thumb" src="/img/t/0/0/0/1l/489.jpeg"></a></div>
+            <div class="col-lg-12 col-md-4 col-sm-4 col-4 mb-0 mb-lg-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'xmissy.nl');"><a href="http://xmissy.nl/item/166475/selfie-shots-40" title="" target="_blank" rel="external"><div><div class="badgeTop px-2 py-1"><span>xmissy.nl</span></div></div><img class="img-fluid img-thumbnail grid-item-thumb" src="/img/t/0/0/0/1m/0.jpeg"></a></div>
+            <div class="col-lg-12 col-md-4 col-sm-4 col-4 mb-0 mb-lg-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'xmissy.nl');"><a href="http://xmissy.nl/item/168305/pix-mix-1027" title="" target="_blank" rel="external"><div><div class="badgeTop px-2 py-1"><span>xmissy.nl</span></div></div><img class="img-fluid img-thumbnail grid-item-thumb" src="/img/t/0/0/0/1l/498.jpeg"></a></div>
+        {% endif %}
+{% else %}
+    <div class="col-lg-12 col-md-4 col-sm-4 col-4 mb-0 mb-lg-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'motherless');"><a href="http://motherless.com/D8E265C" title="" target="_blank" rel="external"><div><div class="badgeTop px-2 py-1"><span>motherless.com</span></div></div><img class="img-fluid img-thumbnail grid-item-thumb" src="/img/t/0/0/0/1l/489.jpeg"></a></div>
+    <div class="col-lg-12 col-md-4 col-sm-4 col-4 mb-0 mb-lg-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'xmissy.nl');"><a href="http://xmissy.nl/item/166475/selfie-shots-40" title="" target="_blank" rel="external"><div><div class="badgeTop px-2 py-1"><span>xmissy.nl</span></div></div><img class="img-fluid img-thumbnail grid-item-thumb" src="/img/t/0/0/0/1m/0.jpeg"></a></div>
+    <div class="col-lg-12 col-md-4 col-sm-4 col-4 mb-0 mb-lg-2 px-1" onclick="ga('send', 'event', 'tradeplugs', 'xmissy.nl');"><a href="http://xmissy.nl/item/168305/pix-mix-1027" title="" target="_blank" rel="external"><div><div class="badgeTop px-2 py-1"><span>xmissy.nl</span></div></div><img class="img-fluid img-thumbnail grid-item-thumb" src="/img/t/0/0/0/1l/498.jpeg"></a></div>
+{% endif %}
+</div>

@@ -1,0 +1,7 @@
+{% set templateName = (template_content_tag is defined ? template_content_tag : 'default') %}
+
+{% if templateName == 'default' %}
+    {% include 'content/tagContainer/default.html.twig' %}
+{% elseif templateName == 'showMore' %}
+    {% include 'content/tagContainer/withMore.html.twig' %}
+{% endif %}

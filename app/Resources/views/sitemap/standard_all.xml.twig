@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>{{ urlBase }}sitemap/standard_1.xml</loc>
+        <lastmod>{{ mainLastMod }}</lastmod>
+    </sitemap>
+    {% for cc in content %}
+    <sitemap>
+        <loc>{{ urlBase }}sitemap/standard_{{ (loop.index + 1) }}.xml</loc>
+        <lastmod>{{ mainLastMod }}</lastmod>
+    </sitemap>
+    {% endfor %}
+</sitemapindex>

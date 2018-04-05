@@ -1,0 +1,79 @@
+{# @var contentSupply \AppBundle\Tools\Supply\Content #}
+{% extends 'base.html.twig' %}
+{% set ogImage = '' %}
+{% set content = contentSupply.tagContent.contentObjArray %}
+{% set title = contentSupply.filterCount|raw ~ " Best " ~ contentSupply.tagContent.label ~ " " ~ contentSupply.filterContext ~ " on " ~ brand %}
+{% if content|length > 0 %}{% set ogImage = url('homepage') ~ "img/t/" ~ contentSupply.tagContent.contentObjArraysFirstEntry.thumbnailURL %}{% endif %}
+{% set description = 'Explore over ' ~ contentSupply.filterCount|raw ~ " " ~ contentSupply.filterContext ~ ' tagged with '~contentSupply.tagContent.label ~' on ' ~ brand ~ contentSupply.tagContent.metaObjOrEmptyOne.description %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block metaLink %}
+    {% include ':content/metaPlugs:metaLink.html.twig' ignore missing %}
+{% endblock %}
+
+{% block meta %}
+    <meta name="twitter:url" content="{{ constant('SETTING_PREVENT_SSL') is defined ? 'http:' : 'https'}}://{{ app.request.host ~ app.request.baseUrl ~ app.request.pathInfo }}"/>
+    <meta name="twitter:title" content="{{ title }}"/>
+    <meta name="twitter:description" content="{{ description }}"/>
+    <meta property="article:author" content="{{ brand }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="{{ ogImage }}"/>
+
+    <meta property="og:url" content="{{ constant('SETTING_PREVENT_SSL') is defined ? 'http:' : 'https'}}://{{ app.request.host ~ app.request.baseUrl ~ app.request.pathInfo }}"/>
+    <meta property="og:title" content="{{ title }}"/>
+    <meta property="og:description" content="{{ description }}"/>
+    <meta property="og:site_name" content="{{ brand }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content="{{ ogImage }}"/>
+    <meta property="og:image:width" content="300"/>
+    <meta property="og:image:height" content="300"/>
+    <link rel="canonical" href="{{ constant('SETTING_PREVENT_SSL') is defined ? 'http:' : 'https'}}://{{ app.request.host ~ app.request.baseUrl ~ app.request.pathInfo }}">
+{% endblock %}
+{% block description %}
+{{ description }}
+{% endblock %}
+
+{% block body %}
+    {% if template_cards is defined and template_cards == '1' %}
+        {% include 'content/tagCards.html.twig' %}
+        {% set only = "1" %}
+    {% else %}
+    <div class="container px-0">
+        <div class="px-1">
+            {% include 'tagPage/distributor.html.twig' %}
+        </div>
+        <div class="row no-gutters">
+            {% include('default/sidebar.html.twig') %}
+            <div class="col">
+                <div class="col-12 px-1 mb-3">
+                    {{ include('navigationHead/filterCrumb.html.twig') }}
+                </div>
+                <div id="infiniteBox-new" class="xcInfBox row no-gutters infinite-scroll">
+                    {% include "/content/baseLoop.html.twig" ignore missing %}
+                    {% if contentSupply.moreElements %}
+                        <a id="linkLoadRecent-0" class="nextPagionationLink col-12 text-center mb-2"
+                           href="?page={{ contentSupply.nextPage }}&filter=0" rel="noindex, follow">
+                            <button class="btn btn-primary col-12 col-sm-6">Load More</button>
+                        </a>
+                        <script>var link = document.getElementById("linkLoadRecent-0");
+                            link.setAttribute('data-link', "{{ url("apiContentTagRelated") }}?tagID={{ contentSupply.tagContent.iD }}&page={{ contentSupply.nextPage }}&filter=0");
+                            //link.style.display = 'none';</script>
+                    {% endif %}
+                    {%if trade is defined %}
+                        <div class="col-12 px-0 my-3">
+                            {% include 'plugs/banner/trade.html.twig' ignore missing %}
+                        </div>
+                    {% else %}
+                        <div class="col-12 px-0 px-md-1 mt-3">
+                            {% set adSlot = 'i_slot_3' %}
+                            {% include 'plugs/banner/distributor.php.twig' ignore missing %}
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
